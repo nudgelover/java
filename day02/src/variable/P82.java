@@ -22,7 +22,7 @@ public class P82 {
 		// System.out.println(grade);
 		// sc.close();
 
-		String grade = (score >= 90) ? "A" : (score >= 80) ? "B" : (score >=60)? "C":"D";
+		String grade = (score >= 90) ? "A" : (score >= 80) ? "B" : (score >= 60) ? "C" : "D";
 		System.out.println(grade);
 		sc.close();
 	}

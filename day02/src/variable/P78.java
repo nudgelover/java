@@ -12,7 +12,6 @@ public class P78 {
 			grade = "low";
 
 		}
-		
 
 		System.out.println(grade);
 	}

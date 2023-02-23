@@ -16,7 +16,7 @@ public class P64 {
 		if (str1.equals(str2)) {
 			System.out.println("OK2");
 			// 스트링의 내용까지 일치하는지 까지 확인 abc=abc
-			//66페이지 하단 참고
+			// 66페이지 하단 참고
 		}
 
 		String str3 = new String("abc");

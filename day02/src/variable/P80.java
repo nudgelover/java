@@ -1,7 +1,5 @@
 package variable;
 
-import java.util.Scanner;
-
 public class P80 {
 
 	public static void main(String[] args) {

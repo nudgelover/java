@@ -8,8 +8,6 @@ public class P79 {
 		String grade = (credit >= 800) ? "high" : "low";
 		System.out.println(grade);
 
-		
-	
 	}
 
 }

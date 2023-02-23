@@ -26,7 +26,7 @@ public class P69 {
 		System.out.println(str3);
 		// 1,3
 
-		String email = "wlsgml2422@gmail.com";
+		//String email = "wlsgml2422@gmail.com";
 		
 		String id = "";
 		String domain = "";
