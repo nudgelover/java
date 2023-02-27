@@ -3,9 +3,8 @@ package whilecontrol;
 public class P96 {
 
 	public static void main(String[] args) {
-		int a = 1000;
+
 		// 짝수의 합을 구하시오
-		int bb = 2200;
 		System.out.println("start...");
 
 		int cnt = 0;
