@@ -3,7 +3,7 @@ package whilecontrol;
 public class P96 {
 
 	public static void main(String[] args) {
-
+		int cc = 10000;
 		// 짝수의 합을 구하시오
 		System.out.println("start...");
 
