@@ -7,17 +7,8 @@ public class Ws {
 //		1. 3의 배수 합과 평균을 구하시오
 //		2. 4의 배수 합과 평균을 구하시오
 //		3. 7의 배수 합과 평균을 구하시오
-		int cnt = 0;
-		int sum = 0;
-		double avg = 0;
-
-		int cnt2 = 0;
-		int sum2 = 0;
-		double avg2 = 0;
-
-		int cnt3 = 0;
-		int sum3 = 0;
-		double avg3 = 0;
+		int cnt=0, cnt2=0, cnt3=0, sum=0, sum2=0, sum3 = 0;
+		double avg=0, avg2=0, avg3 = 0;
 
 		for (int i = 1; i <= 100; i++) {
 			if (i % 3 == 0) {
