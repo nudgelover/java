@@ -5,7 +5,7 @@ import java.util.Random;
 public class P68 {
 
 	public static void main(String[] args) {
-		  int bb = 100; //깃테스트 추가용
+
 	      String s1 = "10";
 	      // string을 int로 바꿀 때
 	      int s2 = Integer.parseInt(s1);

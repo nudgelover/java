@@ -1,7 +1,5 @@
 package variable;
 
-import java.util.Scanner;
-
 public class email {
 
 	public static void main(String[] args) {
