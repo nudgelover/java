@@ -21,6 +21,9 @@ public class Car {
 		this.size = size;
 	}
 
+
+	
+	
 	// 행위(operation)
 	public void go() {
 		System.out.printf("%s,%s Go Car...\n", this.name, this.color);
