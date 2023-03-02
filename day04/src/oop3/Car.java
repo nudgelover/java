@@ -1,7 +1,5 @@
 package oop3;
 
-import java.util.Scanner;
-
 public class Car {
 
 	// 속성
