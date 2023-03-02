@@ -1,13 +1,24 @@
-package com.kbstar.hrd;
+package cthis;
+
+import java.util.Calendar;
 
 public class Employee {
 	private String id;
 	private String name;
 	private int salary;
 
+
 //---------------------------------------------------------------------------------
 
-	public Employee() { // 무조건 default 만들어라!
+	public Employee() {
+		Calendar cal = Calendar.getInstance();
+		this.id = ""+cal.get(Calendar.YEAR)+ cal.get(Calendar.MILLISECOND);// 무조건 default 만들어라!
+	}
+	
+	public Employee(String name, int salary) {
+		this();//p151 관련내용 this를 쓸 때는 반드시 맨 위에.
+		this.name = name;
+		this.salary = salary;
 	}
 
 	public Employee(String id, String name, int salary) {
@@ -18,6 +29,8 @@ public class Employee {
 	
 	
 // getter and setter-------조회만 할거는 getter만 하고 수정가능한거는 setter 까지!-----------------------------------------------
+
+
 
 
 	public String getName() {
