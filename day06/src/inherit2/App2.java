@@ -20,6 +20,11 @@ public class App2 {
 			System.out.println(em);
 			System.out.println(em.getAnnSalary());
 			System.out.println(em.getIncentive());
+			if(em instanceof Sales) {
+				Sales s = (Sales)em;
+				System.out.println(s.getIncentive());
+			}
+		
 			//이게 훨씬 간단하네...!!!
 		}
 		System.out.println("------------------------------------------------------------");
