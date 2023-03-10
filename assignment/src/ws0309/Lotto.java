@@ -74,7 +74,7 @@ public class Lotto {
 		System.out.printf("총 당첨금액은 %.0f 원 입니다.\n", prizeMoney);
 	}
 
-	public int checkRanking(ArrayList<Integer> myNum) {
+	public int checkRanking(ArrayList<Integer> myNum) throws Exception {
 		// 본인이 입력한 숫자 3개를 argument로 입력 하면
 		// 몇개가 일치한지를 check 한후 등수를 리턴
 		// 등수는 자유롭게 설정
@@ -92,7 +92,7 @@ public class Lotto {
 		} else if (cnt == 1) {
 			grade = 3;
 		} else {
-			grade = 4;
+			throw new Exception();
 		}
 		return grade;
 

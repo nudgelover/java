@@ -19,8 +19,13 @@ public class App {
 		
 		userNum = lotto.getNumUser();
 
-		System.out.println("고객님의 등수는 "+ lotto.checkRanking(userNum)+"등 입니다");
-		System.out.printf("고객님의 당첨금액은 %.0f원 입니다.",lotto.prizeMoney(lotto.getGrade()));
+		try {
+			System.out.println("고객님의 등수는 "+ lotto.checkRanking(userNum)+"등 입니다");
+			System.out.printf("고객님의 당첨금액은 %.0f원 입니다.",lotto.prizeMoney(lotto.getGrade()));
+			
+		} catch (Exception e) {
+			System.out.println("아쉽지만 금번 회차에서는 낙첨되셨습니다. ㅠㅠ 다음에 또 도전해주세요!");
+		}
 		
 
 		sc.close();
