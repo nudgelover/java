@@ -4,10 +4,11 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
 import com.kbstar.dto.Cust;
 import com.kbstar.frame.DAO;
 import com.kbstar.frame.Sql;
@@ -56,7 +57,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 		} catch (SQLException e1) {
 			throw e1;
-	
+
 		}
 
 	}
@@ -95,14 +96,47 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 	@Override
 	public Cust select(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Cust cust = null;
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectSql);) {
+			pstmt.setString(1, k);
+			try (ResultSet rset = pstmt.executeQuery()) {
+				rset.next(); 
+				String db_id = rset.getString("id");
+				String db_pwd = rset.getString("pwd");
+				String name = rset.getString("name");
+				int age = rset.getInt("age");
+				cust = new Cust(db_id, db_pwd, name, age);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return cust;
 	}
 
 	@Override
 	public List<Cust> selectAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cust> list = new ArrayList<Cust>();
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectAllSql);) {
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while (rset.next()) {
+					String db_id = rset.getString("id");
+					String db_pwd = rset.getString("pwd");
+					String name = rset.getString("name");
+					int age = rset.getInt("age");
+					Cust cust = new Cust(db_id, db_pwd, name, age);
+					list.add(cust);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
