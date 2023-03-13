@@ -41,7 +41,7 @@ public class AccountDAO implements DAO<String, AccountDTO> {
 		if (!db.containsKey(k)) {
 			throw new Exception("EX0006");
 		}
-	
+
 		obj = db.get(k);
 		return obj;
 	}
@@ -58,13 +58,23 @@ public class AccountDAO implements DAO<String, AccountDTO> {
 
 	@Override
 	public List<AccountDTO> search(Object obj) throws Exception {
-		//내 계좌 조회
-		//obj : 사용자의 id
-		//object obj = new String();
-		//자바의 모든 기능은 object에서 받은거니 당연히 string도 가능!
-	
-		//만약 해당 계좌번호가 없으면 오류 보내야겠네!
-		return null;
+		// 내 계좌 조회
+		// obj : 사용자의 id
+		// object obj = new String();
+		// 자바의 모든 기능은 object에서 받은거니 당연히 string도 가능!
+
+		// 만약 해당 계좌번호가 없으면 오류 보내야겠네!
+		List<AccountDTO> list = new ArrayList<AccountDTO>();
+		// 생성을 해야할 때는 new, 불러오기만 할때는 null~
+		Collection<AccountDTO> col = db.values();
+
+		for (AccountDTO acc : col) {
+			// 계좌 중에서 id가 obj와 같은 같은 것들만 집어넣어라...!
+			if (acc.getHolder().equals(obj)) {
+				list.add(acc);
+			}
+		}
+		return list;
 	}
 
 }

@@ -80,14 +80,14 @@ public class BankServiceImpl
 
 	@Override
 	public List<AccountDTO> getAllAcount(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		return accountDao.search(k);
 	}
 
 	@Override
 	public List<TransactionDTO> getAllTr(String acc) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return transactionDao.search(acc);
 	}
 
 	@Override
@@ -109,12 +109,13 @@ public class BankServiceImpl
 		transactionDao.insert(tr);
 		System.out.println(tr);
 		// sms, email 전송
-		
 
 		String uid = acc.getHolder();
 		UserDTO u = userDao.select(uid);
-		notification.sendEmail(u.getEmail(), sendAcc+"에서 "+balance+ "원 이체 완료되었습니다. 잔액은 "+acc.getBalance()+"원입니다.");
-		notification.sendSMS(u.getContact(), sendAcc+"에서 "+balance+ "원 이체 완료되었습니다. 잔액은 "+acc.getBalance()+"원입니다.");
+		notification.sendEmail(u.getEmail(),
+				sendAcc + "에서 " + balance + "원 이체 완료되었습니다. 잔액은 " + acc.getBalance() + "원입니다.");
+		notification.sendSMS(u.getContact(),
+				sendAcc + "에서 " + balance + "원 이체 완료되었습니다. 잔액은 " + acc.getBalance() + "원입니다.");
 	}
 
 }
