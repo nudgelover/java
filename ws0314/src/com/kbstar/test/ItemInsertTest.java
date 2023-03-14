@@ -6,7 +6,7 @@ import com.kbstar.dto.Item;
 import com.kbstar.frame.CRUDService;
 import com.kbstar.service.ItemCRUDServiceImpl;
 
-public class itemInsertTest {
+public class ItemInsertTest {
 
 	public static void main(String[] args) {
 		CRUDService<String, Item> Service = new ItemCRUDServiceImpl();
