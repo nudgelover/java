@@ -53,10 +53,10 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 			pstmt.setString(2, v.getPwd());
 			pstmt.setString(3, v.getName());
 			pstmt.setInt(4, v.getAge());
-			int result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
-		} catch (SQLException e1) {
-			throw e1;
+		} catch (SQLException e) {
+			throw e;
 
 		}
 
@@ -71,8 +71,8 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 			if (result == 0) {
 				throw new Exception("ID 없음");
 			}
-		} catch (SQLException e1) {
-			throw e1;
+		} catch (SQLException e) {
+			throw e;
 
 		}
 	}
@@ -86,32 +86,37 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 			pstmt.setString(4, v.getId());
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
-				//삭제된게 없을 때 exception이 안떠서.. 직접 만들어 주었다.
+				// 삭제된게 없을 때 exception이 안떠서.. 직접 만들어 주었다.
 				throw new Exception("ID 없음");
 			}
 
-		} catch (SQLException e1) {
-			throw e1;
+		} catch (SQLException e) {
+			throw e;
 		}
 	}
 
 	@Override
 	public Cust select(String k) throws Exception {
+		// 리턴할 때 객체로 리턴해야하니..! 객체부터 만드는 거 잊지말자!
 		Cust cust = null;
+
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectSql);) {
 			pstmt.setString(1, k);
 			try (ResultSet rset = pstmt.executeQuery()) {
-				rset.next(); 
-				String db_id = rset.getString("id");
-				String db_pwd = rset.getString("pwd");
+				rset.next();
+				String id = rset.getString("id");
+				String pwd = rset.getString("pwd");
 				String name = rset.getString("name");
 				int age = rset.getInt("age");
-				cust = new Cust(db_id, db_pwd, name, age);
+				cust = new Cust(id, pwd, name, age);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw e;
+				// "ID 없음";
+				//여기서 던지면 CustCRUDServiceImpl로 가니 거기서 고객에게 보여줄 문구를 적어주자.
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			throw e;
+			// "DB 서버 다운";
 		}
 
 		return cust;
@@ -119,23 +124,25 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 	@Override
 	public List<Cust> selectAll() throws Exception {
-		List<Cust> list = new ArrayList<Cust>();
+		List<Cust> list = new ArrayList<>();
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.selectAllSql);) {
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while (rset.next()) {
-					String db_id = rset.getString("id");
-					String db_pwd = rset.getString("pwd");
+					Cust cust = null;
+					String id = rset.getString("id");
+					String pwd = rset.getString("pwd");
 					String name = rset.getString("name");
 					int age = rset.getInt("age");
-					Cust cust = new Cust(db_id, db_pwd, name, age);
+					cust = new Cust(id, pwd, name, age);
 					list.add(cust);
 				}
-
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw e;
+				
+				
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			throw e;
 		}
 		return list;
 	}

@@ -12,7 +12,7 @@ public class CustInsertTest {
 		CRUDService<String, Cust> crudService = new CustCRUDServiceImpl();
 // INSERT TEST-------------------------------------------------------------
 
-//		Cust cust = new Cust("id20", "pwd30", "tom", 30);
+//		Cust cust = new Cust("id02", "pwd02", "jin", 10);
 //
 //		try {
 //			crudService.register(cust);
@@ -30,6 +30,7 @@ public class CustInsertTest {
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 //			e.printStackTrace();
+
 //		}
 
 // DELETE TEST-------------------------------------------------------------
@@ -42,25 +43,29 @@ public class CustInsertTest {
 //			e.printStackTrace();
 
 // select TEST-------------------------------------------------------------
+//		Cust cust = null;
 //		try {
-//			Cust cust = crudService.get("id01");
-//
-//			System.out.println(cust.getId() + " " + cust.getPwd() + " " + cust.getName() + " " + cust.getAge());
+//			cust = crudService.get("id02");
+//			System.out.println(cust);
 //		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+//			System.out.println(e.getMessage());
 //		}
 
 // selectALL TEST-------------------------------------------------------------
 		List<Cust> cust;
 		try {
 			cust = crudService.get();
-			for (Cust data : cust) {
-				System.out.println(data.getId() + " " + data.getPwd() + " " + data.getName() + " " + data.getAge());
+			if (cust.size() == 0) { //예외 안나기에..! 만들어준것!
+				System.out.println("데이터가 없습니다.");
+			} else {
+				for (Cust data : cust) {
+					System.out.println(data);
+				
+				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

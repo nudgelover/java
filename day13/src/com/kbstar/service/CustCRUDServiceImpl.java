@@ -62,14 +62,31 @@ public class CustCRUDServiceImpl implements CRUDService<String, Cust> {
 	@Override
 	public Cust get(String k) throws Exception {
 		Cust cust = null;
-		cust = dao.select(k);
+		try {
+			cust = dao.select(k);
+		} catch (Exception e) {
+			if (e instanceof SQLRecoverableException) {
+				throw new Exception("시스템 장애입니다. 잠시 후 다시 시도 해주세요.");
+			} else {
+				throw new Exception("해당 ID는 존재하지 않습니다.");
+			}
+		}
 		return cust;
 	}
 
 	@Override
 	public List<Cust> get() throws Exception {
-		List<Cust> list = null;
-		list = dao.selectAll();
+		List<Cust> list = null;//이땐 null인이유... custdaoimpl에서 받는거니까..!
+		try {
+			list = dao.selectAll();
+		} catch (Exception e) {
+			if (e instanceof SQLRecoverableException) {
+				throw new Exception("시스템 장애입니다. 잠시 후 다시 시도 해주세요.");
+			}
+//			} else {
+//				throw new Exception("현재 DB에 저장된 내역이 없습니다.");
+//			} 이건 예외처리가 안나서.. 아무런 반응이 안나옴... 여려가지 방법이 있지만 app페이지에서 막아주자...!
+		}
 		return list;
 	}
 
