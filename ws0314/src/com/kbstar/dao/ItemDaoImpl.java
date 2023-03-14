@@ -36,7 +36,6 @@ public class ItemDaoImpl implements DAO<String, String, Item> {
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;
-
 		}
 	}
 
