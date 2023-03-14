@@ -31,13 +31,14 @@ public class SeleteAllTest {
 		try (Connection con = DriverManager.getConnection(url, id, pwd);
 				PreparedStatement pstmt = con.prepareStatement(selectAllSql);) {
 			// select는 여기가 틀리다!
+			// 아무것도 없을 때 불러오기하면 오류가 안나고 그냥 아무것도 안불러온다.. select랑 차이가 있네..!
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while(rset.next()) {
 					String db_id = rset.getString("id");
 					String db_pwd = rset.getString("pwd");
 					String name = rset.getString("name");
 					int age = rset.getInt("age");
-					System.out.println(db_id+""+name+""+age);
+					System.out.println(db_id+" "+db_pwd+" "+name+" "+age);
 				}
 				
 			} catch (SQLException e) {

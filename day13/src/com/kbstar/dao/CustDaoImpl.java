@@ -86,6 +86,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 			pstmt.setString(4, v.getId());
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
+				//삭제된게 없을 때 exception이 안떠서.. 직접 만들어 주었다.
 				throw new Exception("ID 없음");
 			}
 

@@ -30,7 +30,8 @@ public class SeleteTest {
 		// p224 참고해서 finally 간단하게 바꾸기------------------------------------------------
 		try (Connection con = DriverManager.getConnection(url, id, pwd);
 				PreparedStatement pstmt = con.prepareStatement(selectSql);) {
-			pstmt.setString(1, "id01");
+			pstmt.setString(1, "id20");
+			//일부로 없는 데이터를 넣어보니 NULL이 아니라 <java.sql.SQLException: 결과 집합을 모두 소모했음> 이라는 예외 나오네..?
 			// select는 여기가 틀리다!
 			try (ResultSet rset = pstmt.executeQuery()) {
 				rset.next(); //이게 매우 중요! 데이터 이전!
@@ -39,7 +40,7 @@ public class SeleteTest {
 				String db_pwd = rset.getString("pwd");
 				String name = rset.getString("name");
 				int age = rset.getInt("age");
-				System.out.println(db_id+" "+pwd+" "+name+" "+age);
+				System.out.println(db_id+" "+db_pwd+" "+name+" "+age);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
