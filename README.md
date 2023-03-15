@@ -30,6 +30,23 @@
 
 <br><br>
 
+1.first
+
+*hello*
+_heool_
+**gaga**
+__ss__
+
+<pre>
+<code>
+	  CRUDService<String, Cust> custService = new CustCRUDServiceImpl();
+		CRUDService<String, Item> itemService = new ItemCRUDServiceImpl();
+		CRUDService<String, Cart> cartService = new CartCRUDServiceImpl();
+</code>
+</pre>
+
+[google](https://google.com, "google link")
+
 
 
 1. basic
