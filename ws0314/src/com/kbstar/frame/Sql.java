@@ -17,11 +17,14 @@ public class Sql {
 	
 	//Cart DML
 	public static String cartinsertSql = "INSERT INTO cart VALUES(?,?,?,?,SYSDATE)";
-	public static String cartupdateSql = "UPDATE cart SET item_id=?, cnt=?  WHERE id=?";
+	public static String cartupdateSql = "UPDATE cart SET cnt=?  WHERE id=?";
 	public static String cartdeleteSql = "DELETE FROM cart WHERE id = ?";
 	public static String cartselectSql = "SELECT * FROM cart WHERE id = ?";
 	public static String cartselectAllSql = "SELECT * FROM cart";
+
 	
+	//Cart Select
+	public static String mycartselectAllSql = "SELECT *FROM cart WHERE user_id = ?";
 
 
 }

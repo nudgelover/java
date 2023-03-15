@@ -12,7 +12,7 @@ public class CartTest {
 		CRUDService<String, Cart> Service = new CartCRUDServiceImpl();
 // INSERT TEST-------------------------------------------------------------
 
-//		Cart cart = new Cart("id03","2023314876700", 5, null);
+//		Cart cart = new Cart("id03","2023314876700", 3, null);
 //
 //		try {
 //			Service.register(cart);
@@ -23,23 +23,23 @@ public class CartTest {
 
 // UPDATE TEST-------------------------------------------------------------
 		
-	Cart cart = new Cart("2023314876111",8,"2023314551101");
-		try {
-			Service.modify(cart);;
-			System.out.println("성공");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-
-		}
-
-// DELETE TEST-------------------------------------------------------------
-//
+//	Cart cart = new Cart(11,"2023314485101");
 //		try {
-//			Service.remove("2023314542101");
+//			Service.modify(cart);;
 //			System.out.println("성공");
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
+//
 //		}
+
+// DELETE TEST-------------------------------------------------------------
+
+		try {
+			Service.remove("2023314542101");
+			System.out.println("성공");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 // select TEST-------------------------------------------------------------
 //		Cart cart = null;
 //		try {

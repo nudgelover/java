@@ -21,28 +21,9 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Driver Loading 성공.");
+		//System.out.println("Driver Loading 성공.");
 	}
-
-// Connection은 공통적인 거니까 함수로 뺴주자! ---------> 아예 인터페이스로 옮기자(item도 만들거라서..)
-//	public Connection getConnection() throws Exception {
-//
-//		Connection con = null;
-//
-//		// Properties 사용해보자! 비밀번호나 url 주소 변경되었을 때 파일만 수정하면 되니까
-//		// 또, 보안상의 이유 때문에 pwd를 대놓고 적으면 문제가 되니..!
-//		Properties props = new Properties();
-//		String fileName = "db_info.txt";
-//		FileInputStream in = new FileInputStream(fileName);
-//		props.load(in);
-//
-//		String id = props.getProperty("DB_ID");
-//		String pwd = props.getProperty("DB_PWD");
-//		String url = props.getProperty("DB_URL");
-//		con = DriverManager.getConnection(url, id, pwd);
-//		return con;
-//	}
-
+	
 	@Override
 	public void insert(Cust v) throws Exception {
 		// cust가 들어오면 db에 넣는다.

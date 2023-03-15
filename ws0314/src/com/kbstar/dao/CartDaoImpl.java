@@ -23,7 +23,7 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Driver Loading 성공.");
+		//System.out.println("Driver Loading 성공.");
 	}
 
 	@Override
@@ -58,10 +58,9 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 	public void update(Cart v) throws Exception {
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartupdateSql);) {
 
-			pstmt.setString(1, v.getItem_id());
-			pstmt.setInt(2, v.getCnt());
-			pstmt.setString(3, v.getId());
-			
+			pstmt.setInt(1, v.getCnt());
+			pstmt.setString(2, v.getId());
+
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
 				throw new Exception("일치하는 CART 번호 없음");
@@ -99,7 +98,7 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 
 	@Override
 	public List<Cart> selectAll() throws Exception {
-		List<Cart> list = new ArrayList<Cart>();
+		List<Cart> list = new ArrayList<>();
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartselectAllSql);) {
 			try (ResultSet rset = pstmt.executeQuery()) {
 				while (rset.next()) {
@@ -123,8 +122,27 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 
 	@Override
 	public List<Cart> search(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cart> list = new ArrayList<>();
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.mycartselectAllSql);) {
+			pstmt.setString(1, k); //위에와 다 동일한데 select문인테 조건이 붙는다..!
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while (rset.next()) {
+					Cart cart = null;
+					String id = rset.getString("id");
+					String user_id = rset.getString("user_id");
+					String item_id = rset.getString("item_id");
+					int cnt = rset.getInt("cnt");
+					Date regdate = rset.getDate("regdate");
+					cart = new Cart(id, user_id, item_id, cnt, regdate);
+					list.add(cart);
+				}
+			} catch (SQLException e) {
+				throw e;
+			}
+		} catch (SQLException e) {
+			throw e;
+		}
+		return list;
 	}
 
 }

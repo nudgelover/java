@@ -21,17 +21,17 @@ public class Cart {
 		this.cnt = cnt;
 	}
 
-	public Cart(String id, String item_id, int cnt) {
-		this();
-		this.id = id;
+
+	public Cart(String user_id, String item_id, int cnt) {
+		super();
+		this.user_id = user_id;
 		this.item_id = item_id;
 		this.cnt = cnt;
 	}
 
-	public Cart(String item_id, int cnt, String id) {
+	public Cart(int cnt, String id) {
 		this();
 		this.id = id;
-		this.item_id = item_id;
 		this.cnt = cnt;
 	}
 
